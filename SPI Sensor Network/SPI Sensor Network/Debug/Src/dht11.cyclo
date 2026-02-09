@@ -1,0 +1,5 @@
+../Src/dht11.c:14:13:DHT_SetOutput	1
+../Src/dht11.c:19:13:DHT_SetInput	1
+../Src/dht11.c:24:16:DHT_ReadBit	6
+../Src/dht11.c:52:16:DHT_ReadByte	2
+../Src/dht11.c:67:9:DHT_Read	5

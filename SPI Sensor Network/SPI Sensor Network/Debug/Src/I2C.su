@@ -1,0 +1,7 @@
+../Src/I2C.c:5:6:I2C_Init	4	static
+../Src/I2C.c:13:6:I2C_GPIO_Init	4	static
+../Src/I2C.c:25:6:I2C_Start	4	static
+../Src/I2C.c:34:6:I2C_Stop	4	static
+../Src/I2C.c:39:6:I2C_Send_Addr	16	static
+../Src/I2C.c:47:9:I2C_Send_Data	16	static
+../Src/I2C.c:60:9:I2C_Read_Data	16	static

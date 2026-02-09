@@ -1,0 +1,3 @@
+../Src/soil.c:12:6:Soil_Init	8	static
+../Src/soil.c:17:10:Soil_ReadRaw	8	static
+../Src/soil.c:22:9:Soil_IsDry	24	static

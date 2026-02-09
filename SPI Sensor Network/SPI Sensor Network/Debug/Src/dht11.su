@@ -1,0 +1,5 @@
+../Src/dht11.c:14:13:DHT_SetOutput	8	static
+../Src/dht11.c:19:13:DHT_SetInput	8	static
+../Src/dht11.c:24:16:DHT_ReadBit	16	static
+../Src/dht11.c:52:16:DHT_ReadByte	16	static
+../Src/dht11.c:67:9:DHT_Read	32	static
