@@ -1,1 +1,199 @@
+<svg viewBox="0 0 1200 1400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#333" />
+    </marker>
+    <style>
+      .state { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+      .state-text { font-family: Arial, sans-serif; font-size: 14px; text-anchor: middle; }
+      .transition { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .transition-label { font-family: Arial, sans-serif; font-size: 12px; fill: #d32f2f; }
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; text-anchor: middle; }
+      .node-title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Title -->
+  <text x="600" y="30" class="title">FSM Diagram - SPI Sensor Network</text>
+  
+  <!-- MASTER NODE FSM -->
+  <text x="300" y="70" class="node-title">Master Node FSM</text>
+  
+  <!-- Initial state indicator -->
+  <circle cx="300" cy="100" r="5" fill="#333"/>
+  <line x1="300" y1="105" x2="300" y2="130" class="transition"/>
+  
+  <!-- INIT State -->
+  <rect x="220" y="130" width="160" height="60" rx="10" class="state"/>
+  <text x="300" y="155" class="state-text" font-weight="bold">INIT</text>
+  <text x="300" y="175" class="state-text" font-size="11">Initialize LCD, RTC</text>
+  
+  <!-- IDLE State -->
+  <rect x="220" y="240" width="160" height="60" rx="10" class="state"/>
+  <text x="300" y="265" class="state-text" font-weight="bold">IDLE</text>
+  <text x="300" y="285" class="state-text" font-size="11">Wait for I2C request</text>
+  
+  <!-- POLL_SLAVES State -->
+  <rect x="220" y="350" width="160" height="60" rx="10" class="state"/>
+  <text x="300" y="375" class="state-text" font-weight="bold">POLL_SLAVES</text>
+  <text x="300" y="395" class="state-text" font-size="11">Send SPI requests</text>
+  
+  <!-- RECEIVE_DATA State -->
+  <rect x="220" y="460" width="160" height="60" rx="10" class="state"/>
+  <text x="300" y="485" class="state-text" font-weight="bold">RECEIVE_DATA</text>
+  <text x="300" y="505" class="state-text" font-size="11">Get data via SPI</text>
+  
+  <!-- DISPLAY State -->
+  <rect x="220" y="570" width="160" height="60" rx="10" class="state"/>
+  <text x="300" y="595" class="state-text" font-weight="bold">DISPLAY</text>
+  <text x="300" y="615" class="state-text" font-size="11">Show data on LCD</text>
+  
+  <!-- Transitions for Master Node -->
+  <path d="M 300 190 L 300 240" class="transition"/>
+  <text x="310" y="220" class="transition-label">Setup complete</text>
+  
+  <path d="M 300 300 L 300 350" class="transition"/>
+  <text x="310" y="330" class="transition-label">Timer/Request</text>
+  
+  <path d="M 300 410 L 300 460" class="transition"/>
+  <text x="310" y="440" class="transition-label">All slaves polled</text>
+  
+  <path d="M 300 520 L 300 570" class="transition"/>
+  <text x="310" y="550" class="transition-label">Data received</text>
+  
+  <path d="M 220 600 Q 150 600 150 380 L 150 270 L 220 270" class="transition"/>
+  <text x="100" y="430" class="transition-label">Display done</text>
+  
 
+  <!-- SLAVE NODE 1 & 2 (Environmental) FSM -->
+  <text x="650" y="70" class="node-title">Slave Node 1 & 2 FSM (Environmental)</text>
+  
+  <!-- Initial state indicator -->
+  <circle cx="650" cy="100" r="5" fill="#333"/>
+  <line x1="650" y1="105" x2="650" y2="130" class="transition"/>
+  
+  <!-- INIT State -->
+  <rect x="570" y="130" width="160" height="60" rx="10" class="state"/>
+  <text x="650" y="155" class="state-text" font-weight="bold">INIT</text>
+  <text x="650" y="175" class="state-text" font-size="11">Setup sensors</text>
+  
+  <!-- IDLE State -->
+  <rect x="570" y="240" width="160" height="60" rx="10" class="state"/>
+  <text x="650" y="265" class="state-text" font-weight="bold">IDLE</text>
+  <text x="650" y="285" class="state-text" font-size="11">Wait for SPI request</text>
+  
+  <!-- MEASURE State -->
+  <rect x="570" y="350" width="160" height="60" rx="10" class="state"/>
+  <text x="650" y="375" class="state-text" font-weight="bold">MEASURE</text>
+  <text x="650" y="395" class="state-text" font-size="11">Read temp/humidity</text>
+  
+  <!-- SEND_DATA State -->
+  <rect x="570" y="460" width="160" height="60" rx="10" class="state"/>
+  <text x="650" y="485" class="state-text" font-weight="bold">SEND_DATA</text>
+  <text x="650" y="505" class="state-text" font-size="11">Transmit via SPI</text>
+  
+  <!-- Transitions for Slave 1 & 2 -->
+  <path d="M 650 190 L 650 240" class="transition"/>
+  <text x="660" y="220" class="transition-label">Setup complete</text>
+  
+  <path d="M 650 300 L 650 350" class="transition"/>
+  <text x="660" y="330" class="transition-label">Master request</text>
+  
+  <path d="M 650 410 L 650 460" class="transition"/>
+  <text x="660" y="440" class="transition-label">Measurement done</text>
+  
+  <path d="M 730 490 Q 800 490 800 365 L 800 270 L 730 270" class="transition"/>
+  <text x="810" y="380" class="transition-label">Sent</text>
+  
+
+  <!-- SLAVE NODE 3 (Control) FSM -->
+  <text x="1000" y="70" class="node-title">Slave Node 3 FSM (Control)</text>
+  
+  <!-- Initial state indicator -->
+  <circle cx="1000" cy="100" r="5" fill="#333"/>
+  <line x1="1000" y1="105" x2="1000" y2="130" class="transition"/>
+  
+  <!-- INIT State -->
+  <rect x="920" y="130" width="160" height="60" rx="10" class="state"/>
+  <text x="1000" y="155" class="state-text" font-weight="bold">INIT</text>
+  <text x="1000" y="175" class="state-text" font-size="11">Setup GPIO</text>
+  
+  <!-- IDLE State -->
+  <rect x="920" y="240" width="160" height="60" rx="10" class="state"/>
+  <text x="1000" y="265" class="state-text" font-weight="bold">IDLE</text>
+  <text x="1000" y="285" class="state-text" font-size="11">Wait for SPI request</text>
+  
+  <!-- RECEIVE_CMD State -->
+  <rect x="920" y="350" width="160" height="60" rx="10" class="state"/>
+  <text x="1000" y="375" class="state-text" font-weight="bold">RECEIVE_CMD</text>
+  <text x="1000" y="395" class="state-text" font-size="11">Get command via SPI</text>
+  
+  <!-- CHECK_CONDITION State -->
+  <rect x="920" y="460" width="160" height="70" rx="10" class="state"/>
+  <text x="1000" y="485" class="state-text" font-weight="bold">CHECK_CONDITION</text>
+  <text x="1000" y="505" class="state-text" font-size="11">Temp < threshold?</text>
+  
+  <!-- MOTOR_ON State -->
+  <rect x="780" y="580" width="140" height="60" rx="10" class="state"/>
+  <text x="850" y="605" class="state-text" font-weight="bold">MOTOR_ON</text>
+  <text x="850" y="625" class="state-text" font-size="11">Turn on LED/Relay</text>
+  
+  <!-- MOTOR_OFF State -->
+  <rect x="1020" y="580" width="140" height="60" rx="10" class="state"/>
+  <text x="1090" y="605" class="state-text" font-weight="bold">MOTOR_OFF</text>
+  <text x="1090" y="625" class="state-text" font-size="11">Turn off LED/Relay</text>
+  
+  <!-- SEND_STATUS State -->
+  <rect x="920" y="690" width="160" height="60" rx="10" class="state"/>
+  <text x="1000" y="715" class="state-text" font-weight="bold">SEND_STATUS</text>
+  <text x="1000" y="735" class="state-text" font-size="11">Send state to Master</text>
+  
+  <!-- Transitions for Slave 3 -->
+  <path d="M 1000 190 L 1000 240" class="transition"/>
+  <text x="1010" y="220" class="transition-label">Setup complete</text>
+  
+  <path d="M 1000 300 L 1000 350" class="transition"/>
+  <text x="1010" y="330" class="transition-label">Master request</text>
+  
+  <path d="M 1000 410 L 1000 460" class="transition"/>
+  <text x="1010" y="440" class="transition-label">Command received</text>
+  
+  <path d="M 960 530 L 880 580" class="transition"/>
+  <text x="890" y="560" class="transition-label">Temp < Threshold</text>
+  
+  <path d="M 1040 530 L 1070 580" class="transition"/>
+  <text x="1050" y="560" class="transition-label">Temp >= Threshold</text>
+  
+  <path d="M 850 640 L 920 720" class="transition"/>
+  <text x="860" y="685" class="transition-label">Action done</text>
+  
+  <path d="M 1090 640 L 1080 720" class="transition"/>
+  <text x="1100" y="685" class="transition-label">Action done</text>
+  
+  <path d="M 920 720 Q 850 720 850 470 L 850 270 L 920 270" class="transition"/>
+  <text x="800" y="490" class="transition-label">Status sent</text>
+  
+  <!-- Legend -->
+  <text x="100" y="750" class="node-title">Legend:</text>
+  <rect x="100" y="770" width="100" height="40" rx="10" class="state"/>
+  <text x="150" y="795" class="state-text">State</text>
+  
+  <line x1="250" y1="790" x2="350" y2="790" class="transition"/>
+  <text x="300" y="810" class="transition-label">Transition</text>
+  
+  <!-- Communication Flow Description -->
+  <text x="100" y="880" class="node-title">Communication Flow:</text>
+  <text x="100" y="910" font-family="Arial" font-size="13">1. Master initiates communication by polling slaves via SPI</text>
+  <text x="100" y="935" font-family="Arial" font-size="13">2. Slave Nodes 1 & 2 measure temperature/humidity and send data</text>
+  <text x="100" y="960" font-family="Arial" font-size="13">3. Slave Node 3 receives commands and controls motor (LED/Relay)</text>
+  <text x="100" y="985" font-family="Arial" font-size="13">4. Master displays all data on LCD with RTC timestamp</text>
+  <text x="100" y="1010" font-family="Arial" font-size="13">5. Master can send control commands to Slave 3 based on sensor data</text>
+  
+  <!-- SPI Communication Notes -->
+  <text x="100" y="1060" class="node-title">SPI Protocol Notes:</text>
+  <text x="100" y="1090" font-family="Arial" font-size="13">• Master (SPI Master) controls chip select (CS) for each slave</text>
+  <text x="100" y="1115" font-family="Arial" font-size="13">• Full-duplex communication: Master sends request while receiving data</text>
+  <text x="100" y="1140" font-family="Arial" font-size="13">• Slaves (SPI Slaves) respond when their CS is asserted LOW</text>
+  <text x="100" y="1165" font-family="Arial" font-size="13">• Data format: [Command Byte] + [Data Payload]</text>
+  
+</svg>
