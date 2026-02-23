@@ -15,7 +15,7 @@ Display: LCD 1602 HD44780 (I2C)
 Cảm biến: Cảm biến nhiệt độ độ ẩm DHT11, cảm biến độ ẩm đất điện dung  
 Module RTC  <br>
 Programmer: ST-Link  
-Phụ kiện: Mạch chuyển đổi giao tiếp LCD sang I2C, Level-shifter mạch chuyển mức logic 3V3 <-> 5V 
+Phụ kiện: Mạch chuyển đổi giao tiếp LCD sang I2C, Level-shifter mạch chuyển mức logic 3V3 <-> 5V, Adapter 5V 3A 
 
 ## Cài đặt
 STM32CubeIDE  
@@ -29,9 +29,16 @@ Lưu đồ này mô tả trạng thái tổng thể trạng thái diễn ra củ
   <img src="SPI Sensor Network/SPI Sensor Network/images/spi_network_fsm.png" alt="SPI Sensor Network State Machine" width="700">
 </p>
 
+
+
 ## 5.Video Demo
 ▶️ [SPI Sensor Network - Demo Video](https://youtu.be/IXFp3IMizs0)
-## 6. Kết luận
+## 6. Kinh nghiệm thực tế lưu ý trong quá trình làm dự án
+Người thực hành nên cấp nguồn nuôi 5V riêng cho LCD và module PCF8574, không nên xài nguồn 5V của Bluepill vì LCD rất nhạy dòng và áp
+Nên mua thêm mạch chuyển tín hiệu I2C vì MCU là 3V3 logic còn LCD là 5V logic.
+
+
+## 7. Kết luận
 Em xin giải thích thêm về kết quả dự án. Em đã làm xong phần mềm và các phần cứng khác. Tuy nhiên, em gặp vấn đề ở bước cuối cùng là xuất ra LCD thì em không làm nó xuất ra được.
 Em đã dùng rất nhiều thời gian và nỗ lực để test xuất kết quả ra LCD 1602. <br>
 Em xin được nói thêm về quá trình em gặp khó khăn này. Ban đầu khi em nối PCF8574 chung với nguồn 5V từ MCU thì kết quả LCD bị mờ đục thấy ô vuông rất mờ. Em nghĩ LCD bị hư nên có đem ra tiệm test luôn nhưng không phải. Cuối cùng em tìm ra là nếu cấp nguồn 5V từ MCU cho PCF8574 và LCD thì do sụt áp thì LCD sẽ sáng mờ do LCD nhạy dòng. Từ đó em mua thêm adapter 5V 3A để làm nguồn nuôi riêng cho LCD thì đã có kết quả là LCD sáng rõ <br>
