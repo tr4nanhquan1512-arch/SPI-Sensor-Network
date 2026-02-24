@@ -17,6 +17,9 @@ Module RTC  <br>
 Programmer: ST-Link  
 Phụ kiện: Mạch chuyển đổi giao tiếp LCD sang I2C, Level-shifter mạch chuyển mức logic 3V3 <-> 5V, Adapter 5V 3A 
 
+## 4. Chức năng
+
+
 ## Cài đặt
 STM32CubeIDE  
 ST-Link Driver  
